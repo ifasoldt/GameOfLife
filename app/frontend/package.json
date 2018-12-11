@@ -1,0 +1,39 @@
+{
+  "name": "frontend",
+  "version": "0.0.1",
+  "description": "GameOfLife",
+  "main": "index.js",
+  "dependencies": {
+    "babel": "6.23.0",
+    "babel-core": "6.26.3",
+    "babel-loader": "8.0.4",
+    "babel-polyfill": "6.26.0",
+    "babel-preset-react": "^6.24.1",
+    "css-loader": "0.28.11",
+    "lodash": "4.17.11",
+    "prop-types": "15.6.2",
+    "react": "16.6.3",
+    "react-dom": "16.3.2",
+    "react-onclickoutside": "^6.7.1",
+    "style-loader": "0.20.3",
+    "webpack": "4.27.1",
+    "whatwg-fetch": "3.0.0"
+  },
+  "scripts": {
+    "dev": "webpack -d --watch",
+    "build_dev": "webpack -d",
+    "build": "webpack -p"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.2.0",
+    "@babel/preset-env": "^7.2.0",
+    "@babel/preset-react": "^7.0.0",
+    "and": "0.0.3",
+    "babel-preset-env": "^1.7.0",
+    "install": "^0.12.2",
+    "npm": "^6.5.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "author": "",
+  "license": "ISC"
+}
