@@ -16,7 +16,7 @@ class GamesController < ApplicationController
   private
 
   def game_params
-    # this doesn't work, seems like rails has a bug with strong params and multi-dimensional arrays.
+    # this doesn't work, seems like my version of rails has a bug with strong params and multi-dimensional arrays.
     # https://github.com/rails/rails/issues/23640
     # params.require(:game).permit(initial_board: [], current_board: [])
   end

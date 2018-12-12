@@ -9,14 +9,36 @@ export default class Simulation extends React.PureComponent {
 
   constructor(props) {
     super(props)
+    this.state = {
+      playing: false
+    }
+  }
+
+  play() {
+    this.setState({
+      playing: true
+    })
+  }
+
+  pause() {
+    this.setState({
+      playing: false
+    })
   }
 
   render() {
-    const { game } = this.props
-
+    const { advance, game } = this.props
     return (
       <div style={styles.container}>
         <div style={styles.gameControls}>
+          <i style={styles.icons} class="material-icons" onClick={this.goBack}>arrow_back</i>
+          {
+            this.state.playing ?
+              <i class="material-icons" onClick={this.pause}>pause_circle_outline</i>
+            :
+              <i style={styles.icons} class="material-icons" onClick={this.play}>play_circle_outline</i>
+          }
+          <i style={styles.icons} class="material-icons" onClick={this.advance}>arrow_forward</i>
         </div>
         <GameBoard
           boardValuesArray={game.current_board}
@@ -45,7 +67,8 @@ const styles = {
     display: 'flex',
     flexDirection: 'column',
   },
-  dropdownLabel: {
-
+  icons: {
+    fontSize: '60px',
+    cursor: 'pointer'
   }
 }
