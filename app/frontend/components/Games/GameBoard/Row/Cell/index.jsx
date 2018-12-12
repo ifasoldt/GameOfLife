@@ -5,9 +5,10 @@ import React from 'react'
 export default class Cell extends React.PureComponent {
 
   render() {
-    const { cellIndex, value } = this.props
+    const { cellIndex, toggleCell, value } = this.props
+    debugger
     return (
-      <div style={styles.cell(value)}>
+      <div style={styles.cell(value)} onClick={() => toggleCell(cellIndex)}>
       </div>
     )
   }
@@ -18,7 +19,7 @@ const styles = {
   cell: value => ({
     height: '40px',
     width: '40px',
-    color: value ? 'black' : 'white',
+    backgroundColor: value ? 'black' : 'white',
     border: '1px solid black'
   })
 }

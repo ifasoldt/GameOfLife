@@ -9,9 +9,9 @@ export default class GameBoard extends React.PureComponent {
 
 
   render() {
-    const { boardValuesArray } = this.props
+    const { boardValuesArray, toggleCell } = this.props
     const rows = _.map(boardValuesArray, (boardValuesRow, rowIndex) => {
-      return <Row rowValues={boardValuesRow} rowIndex={rowIndex} />
+      return <Row rowValues={boardValuesRow} rowIndex={rowIndex} toggleCell={toggleCell} />
     })
     return (
       <div style={styles.gameBoardContainer}>

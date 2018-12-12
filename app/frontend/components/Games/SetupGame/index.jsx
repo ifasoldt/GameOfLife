@@ -10,13 +10,29 @@ export default class SetupGame extends React.PureComponent {
   constructor(props) {
     super(props)
     this.state = {
-      boardSize: {name: '20x20', value: 20}
+      boardSize: { name: '20x20', value: 20 },
+      boardValuesArray: this.buildNewBoardValues(20)
     }
     this.onSelect = this.onSelect.bind(this)
+    this.toggleCell = this.toggleCell.bind(this)
   }
 
   onSelect(boardSize) {
-    this.setState({boardSize: boardSize})
+    this.setState({
+      boardSize: boardSize,
+      boardValuesArray: this.buildNewBoardValues(boardSize.value)
+    })
+  }
+
+  toggleCell(rowIndex, cellIndex) {
+    let newBoardValuesArray = _.cloneDeep(this.state.boardValuesArray)
+    const oldValue = newBoardValuesArray[rowIndex][cellIndex]
+    newBoardValuesArray[rowIndex].splice(cellIndex, 1, !oldValue )
+    this.setState({ boardValuesArray: newBoardValuesArray })
+  }
+
+  buildNewBoardValues(number) {
+    return _.times(number, () => _.times(number, () => false) )
   }
 
   render() {
@@ -24,7 +40,6 @@ export default class SetupGame extends React.PureComponent {
     const dropdownOptionsArray = _.map(_.range(2, 21), number => (
       { name: `${number}x${number}`, value: number }
     ))
-    let boardValuesArray = _.times(this.state.boardSize.value, () => _.times(this.state.boardSize.value, () => false) )
     return (
       <div style={styles.container}>
         <div style={styles.dropdownLabel}>Choose Game Board Size</div>
@@ -34,7 +49,8 @@ export default class SetupGame extends React.PureComponent {
           selectedOption={this.state.boardSize}
         />
         <GameBoard
-          boardValuesArray={boardValuesArray}
+          boardValuesArray={this.state.boardValuesArray}
+          toggleCell={this.toggleCell}
         />
       </div>
     )
