@@ -5,10 +5,9 @@ import React from 'react'
 export default class Cell extends React.PureComponent {
 
   render() {
-    const { cellIndex, toggleCell, value } = this.props
-    debugger
+    const { cellIndex, interactive, toggleCell, value } = this.props
     return (
-      <div style={styles.cell(value)} onClick={() => toggleCell(cellIndex)}>
+      <div style={styles.cell(value)} onClick={interactive ? () => toggleCell(cellIndex) : () => {}}>
       </div>
     )
   }

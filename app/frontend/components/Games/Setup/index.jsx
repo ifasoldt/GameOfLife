@@ -5,7 +5,7 @@ import React from 'react'
 import Dropdown from 'components/Dropdown/index.jsx'
 import GameBoard from 'components/Games/GameBoard/index.jsx'
 
-export default class SetupGame extends React.PureComponent {
+export default class Setup extends React.PureComponent {
 
   constructor(props) {
     super(props)
@@ -35,22 +35,34 @@ export default class SetupGame extends React.PureComponent {
     return _.times(number, () => _.times(number, () => false) )
   }
 
-  render() {
-
-    const dropdownOptionsArray = _.map(_.range(2, 21), number => (
+  buildDropdownOptionsArray() {
+    return _.map(_.range(2, 21), number => (
       { name: `${number}x${number}`, value: number }
     ))
+  }
+
+  render() {
+    const { createGame } = this.props
+    debugger
     return (
       <div style={styles.container}>
-        <div style={styles.dropdownLabel}>Choose Game Board Size</div>
-        <Dropdown
-          dropdownArray={dropdownOptionsArray}
-          onSelect={this.onSelect}
-          selectedOption={this.state.boardSize}
-        />
+        <div style={styles.gameControls}>
+          <div style={styles.dropdownContainer}>
+            <div style={styles.dropdownLabel}>Choose Game Board Size</div>
+            <Dropdown
+              dropdownArray={this.buildDropdownOptionsArray()}
+              onSelect={this.onSelect}
+              selectedOption={this.state.boardSize}
+            />
+          </div>
+          <div className="btn btn-secondary" onClick={() => createGame(this.state.boardValuesArray)}>
+            Initialize Game
+          </div>
+        </div>
         <GameBoard
           boardValuesArray={this.state.boardValuesArray}
           toggleCell={this.toggleCell}
+          interactive={true}
         />
       </div>
     )
@@ -62,10 +74,18 @@ const styles = {
   container: {
     display: 'flex',
     flexDirection: 'Column',
-    flexBasis: '80%',
     padding: '8px',
     overflow: 'auto',
-    alignItems: 'center'
+  },
+  gameControls: {
+    display: 'flex',
+    alignItems: 'flex-end',
+    justifyContent: 'space-between',
+    padding: '4px'
+  },
+  dropdownContainer: {
+    display: 'flex',
+    flexDirection: 'column',
   },
   dropdownLabel: {
 

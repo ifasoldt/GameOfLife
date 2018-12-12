@@ -12,14 +12,15 @@ export default class Row extends React.PureComponent {
   }
 
   toggleCell(cellIndex) {
+    debugger
     this.props.toggleCell(this.props.rowIndex, cellIndex)
   }
 
 
   render() {
-    const { rowIndex, rowValues } = this.props
+    const { interactive, rowIndex, rowValues } = this.props
     const cells = _.map(rowValues, (value, cellIndex) =>{
-      return <Cell value={value} cellIndex={cellIndex} toggleCell={this.toggleCell} />
+      return <Cell value={value} cellIndex={cellIndex} toggleCell={this.toggleCell} interactive={interactive} />
     })
     return (
       <div style={styles.row}>

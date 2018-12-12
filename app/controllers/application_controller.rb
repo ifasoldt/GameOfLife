@@ -1,5 +1,29 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :exception
 
-  
+  def render_success(serialized_data = {}, errors = nil, success = nil)
+    json = {
+      date: Time.now.utc,
+      status: 200,
+      messages: {errors: errors, success: success},
+      data: serialized_data
+    }
+    render json: json
+  end
+
+  def render_validation_failed(errors = nil)
+    json = {
+      date: Time.now.utc,
+      status: 400,
+      messages: {errors: errors}
+    }
+    render json: json
+  end
+
+
+  def run_object_serializer(object, each_serializer)
+    ActiveModelSerializers::SerializableResource.new(
+      object, { serializer: each_serializer }
+    )
+  end
+
 end
