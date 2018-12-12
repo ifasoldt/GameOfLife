@@ -17,7 +17,6 @@ export default class Games extends React.PureComponent {
   }
 
   getPage() {
-    debugger
     switch (this.state.page) {
       case PAGES.setupGame:
         return <SetupGame />
@@ -35,11 +34,4 @@ export default class Games extends React.PureComponent {
     )
   }
 
-}
-
-const styles = {
-  container: {
-    height: '100vh',
-    width: '100vw'
-  }
 }

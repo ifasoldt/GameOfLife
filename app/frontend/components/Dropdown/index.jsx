@@ -30,15 +30,15 @@ class Dropdown extends React.PureComponent {
   render() {
     const { dropdownArray, onSelect, selectedOption } = this.props
     const dropdownOptions = _.map(dropdownArray, item => (
-      <li onClick={() => this.onSelect(item)}><a>{item}</a></li>
+      <a className="dropdown-item" onClick={() => this.onSelect(item)}>{item.name}</a>
     ))
     return (
         <div class="dropdown">
-          <button class="btn btn-default" type="button" onClick={this.onButtonClick}>
-            {selectedOption}
+          <button style={styles.button} className="btn btn-secondary dropdown-toggle" type="button" onClick={this.onButtonClick}>
+            {selectedOption.name}
             <span class="caret"></span>
           </button>
-          <ul style={styles.dropdownOptions(this.state.showDropdown)} class="dropdown-menu">
+          <ul style={styles.dropdownOptions(this.state.showDropdown)} className="dropdown-menu">
             {dropdownOptions}
           </ul>
         </div>
@@ -48,13 +48,7 @@ class Dropdown extends React.PureComponent {
 }
 
 const styles = {
-  container: {
-    display: 'flex',
-    flexDirection: 'Column',
-    flexBasis: '80%',
-    backgroundColor: 'black'
-  },
-  dropdown: {
+  button: {
   },
   dropdownOptions: showDropdown => ({
     display: showDropdown ? 'block' : 'none'

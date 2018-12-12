@@ -13,3 +13,12 @@
  *= require_tree .
  *= require_self
  */
+
+
+#react-root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  justify-content: center;
+  min-height: min-content;
+}
