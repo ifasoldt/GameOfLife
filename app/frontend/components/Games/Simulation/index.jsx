@@ -16,6 +16,20 @@ export default class Simulation extends React.PureComponent {
     this.pause = this.pause.bind(this)
   }
 
+  componentDidUpdate() {
+    if (this.state.playing) {
+      clearInterval(this.interval);
+      this.interval = setInterval(() => this.props.advanceGame(), 500);
+    } else {
+      clearInterval(this.interval);
+    }
+  }
+
+  componentWillUnmount() {
+    // prevent memory leaks
+    clearInterval(this.interval);
+  }
+
   play() {
     this.setState({
       playing: true

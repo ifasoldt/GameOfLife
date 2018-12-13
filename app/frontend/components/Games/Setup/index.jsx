@@ -96,7 +96,8 @@ const styles = {
   rightColumn: {
     display: 'flex',
     flexGrow: 1,
-    flexDirection: 'column'
+    flexDirection: 'column',
+    padding: '24px'
   },
   pageTitle: {
     display: 'flex',
