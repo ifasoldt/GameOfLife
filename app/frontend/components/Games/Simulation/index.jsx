@@ -12,6 +12,8 @@ export default class Simulation extends React.PureComponent {
     this.state = {
       playing: false
     }
+    this.play = this.play.bind(this)
+    this.pause = this.pause.bind(this)
   }
 
   play() {
@@ -27,18 +29,18 @@ export default class Simulation extends React.PureComponent {
   }
 
   render() {
-    const { advance, game } = this.props
+    const { advanceGame, game } = this.props
     return (
       <div style={styles.container}>
         <div style={styles.gameControls}>
-          <i style={styles.icons} class="material-icons" onClick={this.goBack}>arrow_back</i>
+          <i style={styles.icons} class="material-icons" onClick={this.goBack}>settings_backup_restore</i>
           {
             this.state.playing ?
-              <i class="material-icons" onClick={this.pause}>pause_circle_outline</i>
+              <i style={styles.icons} class="material-icons" onClick={this.pause}>pause_circle_outline</i>
             :
               <i style={styles.icons} class="material-icons" onClick={this.play}>play_circle_outline</i>
           }
-          <i style={styles.icons} class="material-icons" onClick={this.advance}>arrow_forward</i>
+          <i style={styles.icons} class="material-icons" onClick={advanceGame}>arrow_forward</i>
         </div>
         <GameBoard
           boardValuesArray={game.current_board}
@@ -68,7 +70,7 @@ const styles = {
     flexDirection: 'column',
   },
   icons: {
-    fontSize: '60px',
+    fontSize: '40px',
     cursor: 'pointer'
   }
 }

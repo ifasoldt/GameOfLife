@@ -43,12 +43,11 @@ export default class Setup extends React.PureComponent {
 
   render() {
     const { createGame } = this.props
-    debugger
     return (
       <div style={styles.container}>
         <div style={styles.gameControls}>
           <div style={styles.dropdownContainer}>
-            <div style={styles.dropdownLabel}>Choose Game Board Size</div>
+            <div style={styles.dropdownLabel}>Board Size</div>
             <Dropdown
               dropdownArray={this.buildDropdownOptionsArray()}
               onSelect={this.onSelect}

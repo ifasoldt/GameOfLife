@@ -12,7 +12,6 @@ export default class Row extends React.PureComponent {
   }
 
   toggleCell(cellIndex) {
-    debugger
     this.props.toggleCell(this.props.rowIndex, cellIndex)
   }
 

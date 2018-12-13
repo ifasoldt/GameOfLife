@@ -13,6 +13,11 @@ class GamesController < ApplicationController
     end
   end
 
+  def advance
+    game.advance!
+    render_success(run_object_serializer(game, GameSerializer))
+  end
+
   private
 
   def game_params
@@ -22,7 +27,7 @@ class GamesController < ApplicationController
   end
 
   def game
-    @game ||= params[:id] ? Game.find(params[:id]) : Game.new
+    @game ||= params[:game_id] || params[:id] ? Game.find(params[:game_id] || params[:id]) : Game.new
   end
 
 end

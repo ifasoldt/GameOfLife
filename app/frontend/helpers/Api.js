@@ -15,7 +15,6 @@ const Api = {
   },
 
   post: function(url, data) {
-    debugger
     return fetch(`${this._baseUrl}${url}`, {
       method: 'POST',
       headers: this._setHeaders(),

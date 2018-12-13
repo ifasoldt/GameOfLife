@@ -20,6 +20,7 @@ export default class Games extends React.PureComponent {
       game: {}
     }
     this.createGame = this.createGame.bind(this)
+    this.advanceGame = this.advanceGame.bind(this)
   }
 
   getPage() {
@@ -28,7 +29,7 @@ export default class Games extends React.PureComponent {
         return <Setup createGame={this.createGame} />
         break;
       case PAGES.simulation:
-        return <Simulation game={this.state.game} />
+        return <Simulation game={this.state.game} advanceGame={this.advanceGame} />
       default:
         return <Setup createGame={this.createGame} />
     }
@@ -49,6 +50,20 @@ export default class Games extends React.PureComponent {
       })
   }
 
+  advanceGame() {
+    Api.put(Routes.advanceGame(this.state.game.id), {})
+      .then((game) => {
+        this.setState(
+          ({
+            game: game
+          })
+        )
+      })
+      .catch(() => {
+        // big error message :p
+      })
+  }
+
   buildGameObject(boardValues) {
     return {
       initial_board: boardValues,
@@ -60,8 +75,28 @@ export default class Games extends React.PureComponent {
   render() {
 
     return (
-      this.getPage()
+      <div style={styles.container}>
+        <div style={styles.header}>
+          Conway's Game Of Life
+        </div>
+        {this.getPage()}
+      </div>
+
     )
   }
 
+}
+
+const styles = {
+  container: {
+    display: 'flex',
+    flexBasis: '100%',
+    flexDirection: 'column',
+    alignItems: 'center'
+  },
+  header: {
+    display: 'flex',
+    fontSize: '40px',
+    justifyContent: 'center'
+  }
 }
