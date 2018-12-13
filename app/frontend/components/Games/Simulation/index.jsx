@@ -46,20 +46,29 @@ export default class Simulation extends React.PureComponent {
     const { advanceGame, game } = this.props
     return (
       <div style={styles.container}>
-        <div style={styles.gameControls}>
-          <i style={styles.icons} class="material-icons" onClick={this.goBack}>settings_backup_restore</i>
-          {
-            this.state.playing ?
-              <i style={styles.icons} class="material-icons" onClick={this.pause}>pause_circle_outline</i>
-            :
-              <i style={styles.icons} class="material-icons" onClick={this.play}>play_circle_outline</i>
-          }
-          <i style={styles.icons} class="material-icons" onClick={advanceGame}>arrow_forward</i>
+        <div style={styles.leftColumn}>
+          <div style={styles.gameControl} className="btn btn-secondary" onClick={this.goBack}>
+            <div style={styles.innerButton}><i style={styles.icons} class="material-icons">settings_backup_restore</i>Reset</div>
+          </div>
+          <div style={styles.gameControl} className="btn btn-secondary" onClick={this.state.playing? this.pause : this.play}>
+            {
+              this.state.playing ?
+                <div style={styles.innerButton}><i style={styles.icons} class="material-icons">pause_circle_outline</i>Pause</div>
+              :
+                <div style={styles.innerButton}><i style={styles.icons} class="material-icons">play_circle_outline</i>Play</div>
+            }
+          </div>
+          <div style={styles.gameControl} className="btn btn-secondary" onClick={advanceGame}>
+            <div style={styles.innerButton}><i style={styles.icons} class="material-icons">arrow_forward</i>Forward</div>
+          </div>
         </div>
-        <GameBoard
-          boardValuesArray={game.current_board}
-          interactive={false}
-        />
+        <div style={styles.rightColumn}>
+          <GameBoard
+            boardValuesArray={game.current_board}
+            interactive={false}
+          />
+        </div>
+
       </div>
     )
   }
@@ -69,10 +78,22 @@ export default class Simulation extends React.PureComponent {
 const styles = {
   container: {
     display: 'flex',
-    flexDirection: 'Column',
     padding: '8px',
     overflow: 'auto',
+    flexGrow: 1
+  },
+  leftColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexBasis: '20%',
+    padding: '24px',
+    alignItems: 'flex-end'
+  },
+  rightColumn: {
+    display: 'flex',
     flexGrow: 1,
+    flexDirection: 'column',
+    padding: '24px'
   },
   gameControls: {
     display: 'flex',
@@ -85,7 +106,19 @@ const styles = {
     flexDirection: 'column',
   },
   icons: {
-    fontSize: '40px',
+    fontSize: '20px',
     cursor: 'pointer'
+  },
+  gameControl: {
+    marginTop: '8px',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: '120px'
+  },
+  innerButton: {
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center'
   }
 }
