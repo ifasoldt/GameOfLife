@@ -92,11 +92,12 @@ const styles = {
     display: 'flex',
     flexBasis: '100%',
     flexDirection: 'column',
-    alignItems: 'center'
+    alignItems: 'stretch'
   },
   header: {
     display: 'flex',
     fontSize: '40px',
-    justifyContent: 'center'
+    backgroundColor: 'black',
+    color: 'white'
   }
 }

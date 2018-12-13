@@ -16,8 +16,8 @@ export default class Cell extends React.PureComponent {
 
 const styles = {
   cell: value => ({
-    height: '20px',
-    width: '20px',
+    height: '32px',
+    width: '32px',
     backgroundColor: value ? 'black' : 'white',
     border: '1px solid black'
   })

@@ -7,6 +7,7 @@ class Game < ApplicationRecord
         determine_new_cell_value(cell, row_index, cell_index)
       end
     end
+    self.stage +=1
     save
   end
 
@@ -52,5 +53,5 @@ class Game < ApplicationRecord
       8
     end
   end
-  
+
 end

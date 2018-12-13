@@ -58,6 +58,7 @@ const styles = {
     flexDirection: 'Column',
     padding: '8px',
     overflow: 'auto',
+    flexGrow: 1,
   },
   gameControls: {
     display: 'flex',

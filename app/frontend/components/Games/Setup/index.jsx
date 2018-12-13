@@ -36,7 +36,7 @@ export default class Setup extends React.PureComponent {
   }
 
   buildDropdownOptionsArray() {
-    return _.map(_.range(2, 21), number => (
+    return _.map(_.range(4, 21), number => (
       { name: `${number}x${number}`, value: number }
     ))
   }
@@ -45,24 +45,35 @@ export default class Setup extends React.PureComponent {
     const { createGame } = this.props
     return (
       <div style={styles.container}>
-        <div style={styles.gameControls}>
-          <div style={styles.dropdownContainer}>
-            <div style={styles.dropdownLabel}>Board Size</div>
-            <Dropdown
-              dropdownArray={this.buildDropdownOptionsArray()}
-              onSelect={this.onSelect}
-              selectedOption={this.state.boardSize}
-            />
+        <div style={styles.leftColumn}>
+          <div style={styles.pageTitle}>
+            Setup Game
           </div>
-          <div className="btn btn-secondary" onClick={() => createGame(this.state.boardValuesArray)}>
-            Initialize Game
+          <div style={styles.gameControls}>
+            <div style={styles.dropdownContainer}>
+              <div style={styles.dropdownLabel}>Board Size</div>
+              <Dropdown
+                dropdownArray={this.buildDropdownOptionsArray()}
+                onSelect={this.onSelect}
+                selectedOption={this.state.boardSize}
+              />
+            </div>
+            <div style={styles.initializeButton} className="btn btn-secondary" onClick={() => createGame(this.state.boardValuesArray)}>
+              Initialize Game
+            </div>
           </div>
         </div>
-        <GameBoard
-          boardValuesArray={this.state.boardValuesArray}
-          toggleCell={this.toggleCell}
-          interactive={true}
-        />
+        <div style={styles.rightColumn}>
+          <div style={styles.helperText}>
+            Click on grid cells to setup an initial pattern, or choose a pre-set pattern on the left.
+          </div>
+          <GameBoard
+            boardValuesArray={this.state.boardValuesArray}
+            toggleCell={this.toggleCell}
+            interactive={true}
+          />
+        </div>
+
       </div>
     )
   }
@@ -72,21 +83,39 @@ export default class Setup extends React.PureComponent {
 const styles = {
   container: {
     display: 'flex',
-    flexDirection: 'Column',
     padding: '8px',
     overflow: 'auto',
+    flexGrow: 1
+  },
+  leftColumn: {
+    display: 'flex',
+    flexDirection: 'column',
+    flexBasis: '20%',
+    padding: '24px'
+  },
+  rightColumn: {
+    display: 'flex',
+    flexGrow: 1,
+    flexDirection: 'column'
+  },
+  pageTitle: {
+    display: 'flex',
+    fontSize: '24px',
+    fontWeight: '500',
+    justifyContent: 'flex-end'
   },
   gameControls: {
     display: 'flex',
-    alignItems: 'flex-end',
-    justifyContent: 'space-between',
-    padding: '4px'
+    flexDirection: 'column',
+    padding: '4px',
+    alignItems: 'flex-end'
   },
   dropdownContainer: {
     display: 'flex',
     flexDirection: 'column',
+    marginTop: '8px'
   },
-  dropdownLabel: {
-
+  initializeButton: {
+    marginTop: '8px'
   }
 }

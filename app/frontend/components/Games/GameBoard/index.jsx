@@ -13,7 +13,10 @@ export default class GameBoard extends React.PureComponent {
     })
     return (
       <div style={styles.gameBoardContainer}>
-        {rows}
+        <div style={styles.gameBoard}>
+          {rows}
+        </div>
+
       </div>
     )
   }
@@ -23,7 +26,12 @@ export default class GameBoard extends React.PureComponent {
 const styles = {
   gameBoardContainer: {
     display: 'flex',
+    alignItems: 'flex-start'
+  },
+  gameBoard: {
+    display: 'flex',
     flexDirection: 'column',
-    border: '1px solid gray'
+    border: '1px solid gray',
+    alignItems: 'center'
   }
 }
