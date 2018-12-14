@@ -1,9 +1,8 @@
 # README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple implementation of Conway's Game of Life. There's lots of places where it could be improved, but it should handle the basic functionality just fine.
 
-Things you may want to cover:
+To get started:
 
 * Ruby version
 
