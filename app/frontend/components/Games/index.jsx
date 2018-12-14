@@ -140,6 +140,7 @@ export default class Games extends React.PureComponent {
       page: PAGES.setup,
       game: {}
     })
+    this.getPastGames(1)
   }
 
   // Thought about putting the game object from the Setup component as the game object in state.
