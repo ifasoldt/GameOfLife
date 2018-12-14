@@ -63,23 +63,26 @@ export default class Simulation extends React.PureComponent {
   }
 
   render() {
-    const { advanceGame, game, resetGame } = this.props
+    const { advanceGame, game, newGame, resetGame } = this.props
     return (
       <div style={styles.container}>
         <div style={styles.leftColumn}>
+          <div style={styles.gameControl} className="btn btn-secondary" onClick={newGame}>
+            New Game
+          </div>
           <div style={styles.gameControl} className="btn btn-secondary" onClick={this.resetGame}>
-            <div style={styles.innerButton}><i style={styles.icons} class="material-icons">settings_backup_restore</i>Reset</div>
+            <div style={styles.innerButton}>Reset<i style={styles.icons} className="material-icons">settings_backup_restore</i></div>
           </div>
           <div style={styles.gameControl} className="btn btn-secondary" onClick={this.state.playing? this.pause : this.play}>
             {
               this.state.playing ?
-                <div style={styles.innerButton}><i style={styles.icons} class="material-icons">pause_circle_outline</i>Pause</div>
+                <div style={styles.innerButton}>Pause<i style={styles.icons} className="material-icons">pause_circle_outline</i></div>
               :
-                <div style={styles.innerButton}><i style={styles.icons} class="material-icons">play_circle_outline</i>Play</div>
+                <div style={styles.innerButton}>Play<i style={styles.icons} className="material-icons">play_circle_outline</i></div>
             }
           </div>
           <div style={styles.gameControl} className="btn btn-secondary" onClick={this.advanceGame}>
-            <div style={styles.innerButton}><i style={styles.icons} class="material-icons">arrow_forward</i>Forward</div>
+            <div style={styles.innerButton}>Forward <i style={styles.icons} className="material-icons">arrow_forward</i></div>
           </div>
           <div style={styles.stats}>
             <div style={styles.statName}>
@@ -144,7 +147,8 @@ const styles = {
   },
   icons: {
     fontSize: '20px',
-    cursor: 'pointer'
+    cursor: 'pointer',
+    marginLeft: '4px'
   },
   gameControl: {
     marginTop: '8px',

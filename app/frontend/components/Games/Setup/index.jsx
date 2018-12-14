@@ -65,7 +65,7 @@ export default class Setup extends React.PureComponent {
         </div>
         <div style={styles.rightColumn}>
           <div style={styles.helperText}>
-            Click on grid cells to setup an initial pattern, or choose a pre-set pattern on the left.
+            Click on grid cells to setup an initial pattern.
           </div>
           <GameBoard
             boardValuesArray={this.state.boardValuesArray}

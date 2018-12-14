@@ -29,6 +29,7 @@ export default class Games extends React.PureComponent {
     this.getGame = this.getGame.bind(this)
     this.getPreviousGames = this.getPreviousGames.bind(this)
     this.getNextGames = this.getNextGames.bind(this)
+    this.newGame = this.newGame.bind(this)
   }
 
   componentDidMount() {
@@ -45,6 +46,7 @@ export default class Games extends React.PureComponent {
                   game={this.state.game}
                   advanceGame={this.advanceGame}
                   resetGame={this.resetGame}
+                  newGame={this.newGame}
                 />
       default:
         return <Setup createGame={this.createGame} />
@@ -112,7 +114,6 @@ export default class Games extends React.PureComponent {
   getGame(gameId) {
     Api.get(Routes.game(gameId))
       .then((game) => {
-        debugger
         this.setState(
           ({
             page: PAGES.simulation,
@@ -125,14 +126,20 @@ export default class Games extends React.PureComponent {
       })
   }
 
-
-  // TODO build full functional pagination (ie don't let the user ask for pages that don't exist lol)
+    // TODO build full functional pagination (ie don't let the user ask for pages that don't exist lol)
   getPreviousGames() {
     this.getPastGames(this.state.pastGamesPageNumber - 1)
   }
 
   getNextGames() {
     this.getPastGames(this.state.pastGamesPageNumber + 1)
+  }
+
+  newGame() {
+    this.setState({
+      page: PAGES.setup,
+      game: {}
+    })
   }
 
   // Thought about putting the game object from the Setup component as the game object in state.
