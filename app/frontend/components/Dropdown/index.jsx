@@ -48,11 +48,15 @@ class Dropdown extends React.PureComponent {
 }
 
 const styles = {
-  button: {
-  },
   dropdownOptions: showDropdown => ({
     display: showDropdown ? 'block' : 'none'
   })
+}
+
+Dropdown.propTypes = {
+  dropdownArray: PropTypes.array.isRequired,
+  onSelect: PropTypes.func.isRequired,
+  selectedOption: PropTypes.object.isRequired
 }
 
 export default onClickOutside(Dropdown)

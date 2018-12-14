@@ -121,3 +121,7 @@ const styles = {
     marginTop: '8px'
   }
 }
+
+Setup.propTypes = {
+  createGame: PropTypes.func.isRequired
+}

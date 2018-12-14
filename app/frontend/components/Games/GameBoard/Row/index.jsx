@@ -17,7 +17,7 @@ export default class Row extends React.PureComponent {
 
 
   render() {
-    const { cellSize, interactive, rowIndex, rowValues } = this.props
+    const { cellSize, interactive, rowValues } = this.props
     const cells = _.map(rowValues, (value, cellIndex) =>{
       return (
         <Cell
@@ -42,4 +42,12 @@ const styles = {
   row: {
     display: 'flex'
   }
+}
+
+Row.propTypes = {
+  cellSize: PropTypes.string.isRequired,
+  interactive: PropTypes.bool.isRequired,
+  rowIndex: PropTypes.number.isRequired,
+  rowValues: PropTypes.array.isRequired,
+  toggleCell: PropTypes.func
 }

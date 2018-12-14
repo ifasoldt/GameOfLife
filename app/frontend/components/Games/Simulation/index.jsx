@@ -173,3 +173,10 @@ const styles = {
     fontWeight: '600'
   }
 }
+
+Simulation.propTypes = {
+  advanceGame: PropTypes.func.isRequired,
+  game: PropTypes.object.isRequired,
+  newGame: PropTypes.func.isRequired,
+  resetGame: PropTypes.func.isRequired
+}

@@ -22,3 +22,11 @@ const styles = {
     border: cellSize == 'large' ? '1px solid black' : 'none'
   })
 }
+
+Cell.propTypes = {
+  cellIndex: PropTypes.number.isRequired,
+  cellSize: PropTypes.string.isRequired,
+  interactive: PropTypes.bool.isRequired,
+  toggleCell: PropTypes.func,
+  value: PropTypes.bool.isRequired
+}

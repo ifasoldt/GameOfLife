@@ -12,7 +12,6 @@ class GamesController < ApplicationController
   def new
   end
 
-
   def create
     # yuck, but see note on game_params method below.
     game.assign_attributes(initial_board: params[:initial_board], current_board: params[:current_board])

@@ -76,3 +76,10 @@ const styles = {
     marginRight: '12px'
   }
 }
+
+PastGames.propTypes = {
+  getGame: PropTypes.func.isRequired,
+  getNextGames: PropTypes.func.isRequired,
+  getPreviousGames: PropTypes.func.isRequired,
+  pastGames: PropTypes.array.isRequired
+}

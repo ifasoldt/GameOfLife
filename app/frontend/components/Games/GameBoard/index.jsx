@@ -43,3 +43,10 @@ const styles = {
     alignItems: 'center'
   }
 }
+
+GameBoard.propTypes = {
+  boardValuesArray: PropTypes.array.isRequired,
+  cellSize: PropTypes.string.isRequired,
+  interactive: PropTypes.bool.isRequired,
+  toggleCell: PropTypes.func
+}
