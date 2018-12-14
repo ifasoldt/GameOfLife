@@ -6,6 +6,7 @@ To try it out:
 
 * Clone down the repo locally.
 * In the root directory: `rake db:create` and `rake db:migrate`
+* Get your gems: `bundle install`
 * `cd app/frontend` and install the npm packages by running `npm install`
 * In the same frontend folder build your frontend by calling `npm run dev` (this will also live update if you make any changes to the react files)
 * Start your server: `rails s`
