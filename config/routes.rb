@@ -3,5 +3,6 @@ Rails.application.routes.draw do
   root 'games#new'
   resources :games, only: [:index, :new, :create] do
     put :advance
+    put :reset
   end
 end

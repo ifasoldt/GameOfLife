@@ -21,6 +21,7 @@ export default class Games extends React.PureComponent {
     }
     this.createGame = this.createGame.bind(this)
     this.advanceGame = this.advanceGame.bind(this)
+    this.resetGame = this.resetGame.bind(this)
   }
 
   getPage() {
@@ -29,7 +30,11 @@ export default class Games extends React.PureComponent {
         return <Setup createGame={this.createGame} />
         break;
       case PAGES.simulation:
-        return <Simulation game={this.state.game} advanceGame={this.advanceGame} />
+        return  <Simulation
+                  game={this.state.game}
+                  advanceGame={this.advanceGame}
+                  resetGame={this.resetGame}
+                />
       default:
         return <Setup createGame={this.createGame} />
     }
@@ -64,6 +69,20 @@ export default class Games extends React.PureComponent {
       })
   }
 
+  resetGame() {
+    Api.put(Routes.resetGame(this.state.game.id), {})
+      .then((game) => {
+        this.setState(
+          ({
+            game: game
+          })
+        )
+      })
+      .catch(() => {
+        // big error message :p
+      })
+  }
+
   buildGameObject(boardValues) {
     return {
       initial_board: boardValues,
@@ -80,6 +99,10 @@ export default class Games extends React.PureComponent {
           Conway's Game Of Life
         </div>
         {this.getPage()}
+        <div style={styles.pastGames}>
+          <PastGames
+          />
+        </div>
       </div>
 
     )

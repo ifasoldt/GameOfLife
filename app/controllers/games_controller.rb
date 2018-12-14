@@ -14,8 +14,19 @@ class GamesController < ApplicationController
   end
 
   def advance
-    game.advance!
-    render_success(run_object_serializer(game, GameSerializer))
+    if game.advance!
+      render_success(run_object_serializer(game, GameSerializer))
+    else
+      render_validation_failed(game.errors.full_messages)
+    end
+  end
+
+  def reset
+    if game.reset!
+      render_success(run_object_serializer(game, GameSerializer))
+    else
+      render_validation_failed(game.errors.full_messages)
+    end
   end
 
   private

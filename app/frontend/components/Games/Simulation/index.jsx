@@ -14,6 +14,8 @@ export default class Simulation extends React.PureComponent {
     }
     this.play = this.play.bind(this)
     this.pause = this.pause.bind(this)
+    this.advanceGame = this.advanceGame.bind(this)
+    this.resetGame = this.resetGame.bind(this)
   }
 
   componentDidUpdate() {
@@ -30,6 +32,21 @@ export default class Simulation extends React.PureComponent {
     clearInterval(this.interval);
   }
 
+  advanceGame(){
+    this.setState({
+      playing: false
+    })
+    this.props.advanceGame()
+  }
+
+  resetGame() {
+    debugger
+    this.setState({
+      playing: false
+    })
+    this.props.resetGame()
+  }
+
   play() {
     this.setState({
       playing: true
@@ -42,12 +59,16 @@ export default class Simulation extends React.PureComponent {
     })
   }
 
+  calculateLiveCells(){
+    return this.props.game.current_board.reduce((accumulator, value) => accumulator + (value.filter(i => i).length), 0)
+  }
+
   render() {
-    const { advanceGame, game } = this.props
+    const { advanceGame, game, resetGame } = this.props
     return (
       <div style={styles.container}>
         <div style={styles.leftColumn}>
-          <div style={styles.gameControl} className="btn btn-secondary" onClick={this.goBack}>
+          <div style={styles.gameControl} className="btn btn-secondary" onClick={this.resetGame}>
             <div style={styles.innerButton}><i style={styles.icons} class="material-icons">settings_backup_restore</i>Reset</div>
           </div>
           <div style={styles.gameControl} className="btn btn-secondary" onClick={this.state.playing? this.pause : this.play}>
@@ -58,8 +79,24 @@ export default class Simulation extends React.PureComponent {
                 <div style={styles.innerButton}><i style={styles.icons} class="material-icons">play_circle_outline</i>Play</div>
             }
           </div>
-          <div style={styles.gameControl} className="btn btn-secondary" onClick={advanceGame}>
+          <div style={styles.gameControl} className="btn btn-secondary" onClick={this.advanceGame}>
             <div style={styles.innerButton}><i style={styles.icons} class="material-icons">arrow_forward</i>Forward</div>
+          </div>
+          <div style={styles.stats}>
+            <div style={styles.statName}>
+              Alive Cells:
+            </div>
+            <div style={styles.statValue}>
+              {this.calculateLiveCells()}
+            </div>
+          </div>
+          <div style={styles.stats}>
+            <div style={styles.statName}>
+              Generation:
+            </div>
+            <div style={styles.statValue}>
+              {game.stage}
+            </div>
           </div>
         </div>
         <div style={styles.rightColumn}>
@@ -120,5 +157,15 @@ const styles = {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center'
+  },
+  stats: {
+    marginTop: '8px',
+    fontSize: '18px',
+    display: 'flex',
+    width: '120px',
+    justifyContent: 'space-between'
+  },
+  statName: {
+    fontWeight: '600'
   }
 }
