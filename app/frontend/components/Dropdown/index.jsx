@@ -33,10 +33,10 @@ class Dropdown extends React.PureComponent {
       <a className="dropdown-item" onClick={() => this.onSelect(item)}>{item.name}</a>
     ))
     return (
-        <div class="dropdown">
+        <div className="dropdown">
           <button style={styles.button} className="btn btn-secondary dropdown-toggle" type="button" onClick={this.onButtonClick}>
             {selectedOption.name}
-            <span class="caret"></span>
+            <span className="caret"></span>
           </button>
           <ul style={styles.dropdownOptions(this.state.showDropdown)} className="dropdown-menu">
             {dropdownOptions}

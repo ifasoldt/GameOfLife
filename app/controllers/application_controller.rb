@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include Rails::Pagination
 
   def render_success(serialized_data = {}, errors = nil, success = nil)
     json = {
@@ -23,6 +24,12 @@ class ApplicationController < ActionController::Base
   def run_object_serializer(object, each_serializer)
     ActiveModelSerializers::SerializableResource.new(
       object, { serializer: each_serializer }
+    )
+  end
+
+  def run_array_serializer(relation, each_serializer)
+    ActiveModelSerializers::SerializableResource.new(
+      relation, { each_serializer: each_serializer }
     )
   end
 

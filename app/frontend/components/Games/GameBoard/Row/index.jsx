@@ -17,9 +17,17 @@ export default class Row extends React.PureComponent {
 
 
   render() {
-    const { interactive, rowIndex, rowValues } = this.props
+    const { cellSize, interactive, rowIndex, rowValues } = this.props
     const cells = _.map(rowValues, (value, cellIndex) =>{
-      return <Cell value={value} cellIndex={cellIndex} toggleCell={this.toggleCell} interactive={interactive} />
+      return (
+        <Cell
+          value={value}
+          cellIndex={cellIndex}
+          toggleCell={this.toggleCell}
+          interactive={interactive}
+          cellSize={cellSize}
+        />
+      )
     })
     return (
       <div style={styles.row}>

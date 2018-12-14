@@ -1,7 +1,17 @@
 class GamesController < ApplicationController
 
+  def index
+    render_success(run_array_serializer(paginate(Game.order(id: 'desc'), per_page: 5), GameSerializer))
+  end
+
+
+  def show
+    render_success(run_object_serializer(game, GameSerializer))
+  end
+
   def new
   end
+
 
   def create
     # yuck, but see note on game_params method below.

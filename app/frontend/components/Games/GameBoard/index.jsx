@@ -7,9 +7,17 @@ import Row from './Row/index.jsx'
 export default class GameBoard extends React.PureComponent {
 
   render() {
-    const { boardValuesArray, interactive, toggleCell } = this.props
+    const { boardValuesArray, cellSize, interactive, toggleCell } = this.props
     const rows = _.map(boardValuesArray, (boardValuesRow, rowIndex) => {
-      return <Row rowValues={boardValuesRow} rowIndex={rowIndex} toggleCell={toggleCell} interactive={interactive} />
+      return (
+        <Row
+          rowValues={boardValuesRow}
+          rowIndex={rowIndex}
+          toggleCell={toggleCell}
+          interactive={interactive}
+          cellSize={cellSize}
+        />
+      )
     })
     return (
       <div style={styles.gameBoardContainer}>

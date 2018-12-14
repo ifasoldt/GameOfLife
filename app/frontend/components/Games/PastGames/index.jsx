@@ -2,59 +2,77 @@ import _ from 'lodash'
 import PropTypes from 'prop-types'
 import React from 'react'
 
-import Dropdown from 'components/Dropdown/index.jsx'
 import GameBoard from 'components/Games/GameBoard/index.jsx'
 
-export default class Setup extends React.PureComponent {
+export default class PastGames extends React.PureComponent {
+
+  buildPastGamesComponents() {
+    return _.map(this.props.pastGames, (pastGame) => {
+      return (
+        <div style={styles.pastGame} onClick={() => this.props.getGame(pastGame.id)}>
+          <div style={styles.gameNumber}>{pastGame.id}</div>
+          <GameBoard
+            boardValuesArray={pastGame.current_board}
+            interactive={false}
+            cellSize={'small'}
+          />
+        </div>
+      )
+    })
+  }
 
   render() {
-      <GameBoard
-        boardValuesArray={this.state.boardValuesArray}
-        toggleCell={this.toggleCell}
-        interactive={false}
-      />
+    const { getNextGames, getPreviousGames, pastGames } = this.props
+    return (
+      <div style={styles.pastGamesContainer}>
+        <div style={styles.title}>Past Games</div>
+        <div style={styles.changePage}>
+          <div style={styles.button} className="btn btn-secondary" onClick={getPreviousGames} >previous</div>
+          <div style={styles.button} className="btn btn-secondary" onClick={getNextGames} >next</div>
+        </div>
+        {this.buildPastGamesComponents()}
+      </div>
     )
   }
 
 }
 
 const styles = {
-  container: {
-    display: 'flex',
-    padding: '8px',
-    overflow: 'auto',
-    flexGrow: 1
-  },
-  leftColumn: {
-    display: 'flex',
-    flexDirection: 'column',
+  pastGamesContainer: {
     flexBasis: '20%',
-    padding: '24px'
-  },
-  rightColumn: {
     display: 'flex',
-    flexGrow: 1,
     flexDirection: 'column',
-    padding: '24px'
+    alignItems: 'center',
+    flexGrow: '1',
+    padding: '32px'
   },
-  pageTitle: {
+  title: {
     display: 'flex',
     fontSize: '24px',
     fontWeight: '500',
-    justifyContent: 'flex-end'
+    justifyContent: 'flex-end',
+    marginBottom: '8px'
   },
-  gameControls: {
+  pastGame: {
+    height: '100px',
+    width: '100px',
     display: 'flex',
     flexDirection: 'column',
-    padding: '4px',
-    alignItems: 'flex-end'
+    justifyContent: 'center',
+    alignItems: 'center',
+    marginTop: '20px',
+    cursor: 'pointer'
   },
-  dropdownContainer: {
+  gameNumber: {
     display: 'flex',
-    flexDirection: 'column',
-    marginTop: '8px'
+    justifyContent: 'center',
+    fontWeight: 600,
   },
-  initializeButton: {
-    marginTop: '8px'
+  changePage: {
+    display: 'flex',
+    justifyContent: 'space-between',
+  },
+  button: {
+    marginRight: '12px'
   }
 }

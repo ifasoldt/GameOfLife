@@ -71,6 +71,7 @@ export default class Setup extends React.PureComponent {
             boardValuesArray={this.state.boardValuesArray}
             toggleCell={this.toggleCell}
             interactive={true}
+            cellSize={'large'}
           />
         </div>
 
@@ -85,7 +86,7 @@ const styles = {
     display: 'flex',
     padding: '8px',
     overflow: 'auto',
-    flexGrow: 1
+    flexGrow: '1'
   },
   leftColumn: {
     display: 'flex',

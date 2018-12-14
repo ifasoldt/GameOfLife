@@ -40,7 +40,6 @@ export default class Simulation extends React.PureComponent {
   }
 
   resetGame() {
-    debugger
     this.setState({
       playing: false
     })
@@ -103,6 +102,7 @@ export default class Simulation extends React.PureComponent {
           <GameBoard
             boardValuesArray={game.current_board}
             interactive={false}
+            cellSize={'large'}
           />
         </div>
 
@@ -117,7 +117,7 @@ const styles = {
     display: 'flex',
     padding: '8px',
     overflow: 'auto',
-    flexGrow: 1
+    flexGrow: '1'
   },
   leftColumn: {
     display: 'flex',
